@@ -1,4 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Reflection;
+using System.Security.AccessControl;
+using System.Security.Cryptography;
+using System.Xml.Schema;
 
 namespace CarLotSimulator
 {
@@ -6,17 +11,51 @@ namespace CarLotSimulator
     {
         static void Main(string[] args)
         {
-            //TODO
+            var lot = new CarLot();
 
-            //Create a seperate class file called Car
-            //Car shall have the following properties: Year, Make, Model, EngineNoise, HonkNoise, IsDriveable
-            //Car shall have the following methods: MakeEngineNoise(), MakeHonkNoise()
-            //The methods should take one string parameter: the respective noise property
+            
+            var cliffsCar = new Car();
+            cliffsCar.Year = 2024;
+            cliffsCar.Make = "Ford";
+            cliffsCar.isDriveable = false;
+            cliffsCar.EngineNoise = "vroom";
+            cliffsCar.Model = "Focus";
+            cliffsCar.HonkNoise = "beep";
+
+            lot.Cars.Add(cliffsCar);
 
 
-            //Now that the Car class is created we can instanciate 3 new cars
-            //Set the properties for each of the cars
-            //Call each of the methods for each car
+
+
+            var obamaCar = new Car()
+            {
+                Year = 1969,
+                Make = "Audi",
+                isDriveable = true,
+                Model = "r8",
+                EngineNoise = "vroom vroom",
+                HonkNoise = "meep meep",
+            };
+
+            lot.Cars.Add(obamaCar);
+
+            var truecodersCar = new Car(1900, "Toyota", true, "Camry", ". . .", "AHHHHHHHH");
+           
+            lot.Cars.Add(truecodersCar);
+
+            cliffsCar.MakeHonkNoise();
+            obamaCar.MakeHonkNoise();
+            truecodersCar.MakeHonkNoise();
+
+            cliffsCar.MakeEngineNoise();
+            obamaCar.MakeEngineNoise();
+            truecodersCar.MakeEngineNoise();
+
+            foreach(var car in lot.Cars) 
+            {
+                Console.WriteLine($"Make: {car.Make} \nModel: {car.Model} \nYear: {car.Year} \nEngine Noise: {car.EngineNoise} \nHonk Noise: {car.HonkNoise} \nDriveable?: {car.isDriveable}");
+            }
+
 
             //*************BONUS*************//
 
@@ -28,6 +67,15 @@ namespace CarLotSimulator
             //It should have at least one property: a List of cars
             //Instanciate the a Carlot at the beginning of the program and as you create a car add the car to the list.
             //At the end iterate through the list printing each of car's Year, Make, and Model to the console
+        }
+
+        public void MakeEngineNoise(string engineNoise)
+        {
+            Console.WriteLine(engineNoise);
+        }
+        public void MakeHonkNoise(string honkNoise)
+        {
+            Console.WriteLine(honkNoise);
         }
     }
 }
