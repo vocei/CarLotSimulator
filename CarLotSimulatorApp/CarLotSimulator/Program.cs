@@ -51,7 +51,9 @@ namespace CarLotSimulator
             obamaCar.MakeEngineNoise();
             truecodersCar.MakeEngineNoise();
 
-            foreach(var car in lot.Cars) 
+            Console.WriteLine($"Number of cars in lot {CarLot.numberOfCars}");
+
+            foreach (var car in lot.Cars) 
             {
                 Console.WriteLine($"Make: {car.Make} \nModel: {car.Model} \nYear: {car.Year} \nEngine Noise: {car.EngineNoise} \nHonk Noise: {car.HonkNoise} \nDriveable?: {car.isDriveable}");
             }
